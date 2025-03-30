@@ -1,35 +1,54 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from "react";
+
+// function App() {
+//   const [name, setName] = useState("Arko");
+
+//   function updatename() {
+//     setName("My name is" + Math.floor(Math.random() * 10));
+//   }
+//   return (
+//     //React.Fragment or Fragment solves the issue--If you don’t wrap sibling elements in a single parent, React will throw a syntax error because JSX must return a single element.
+//     <React.Fragment>
+//       <button onClick={updatename}>Click me to change the Title</button>
+//       <Header title={name}>My </Header>
+//       <Header title="Arko"></Header>
+//     </React.Fragment>
+//   );
+// }
+// function Header({ title }) {
+//   return <div>{title}</div>;
+// }
+//The problem is every time the first header re renders the total app and other components re-render,which isn't a good practice.
+
+//SOLUTION--1 [Declare the the state variable on in a specific function if already know where's it's gonna use]
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
+    <div>
+      <HeaderWithButton></HeaderWithButton>
+      <Header title="My name is Arko"></Header>
+    </div>
+  );
+
+  function HeaderWithButton() {
+    const [firstName, setFirstName] = useState("My name is Arko");
+
+    function changeName() {
+      setFirstName("My name is " + Math.floor(Math.random() * 10));
+    }
+
+    return (
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <button onClick={changeName}>Click to change First Header Name</button>
+        <Header title={firstName} />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    );
+  }
 }
 
-export default App
+function Header({ title }) {
+  return <div>{title}</div>;
+}
+
+//SOLUTION--2 React.memo
+export default App;
