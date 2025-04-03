@@ -4,10 +4,12 @@ function UseEffectApp() {
   const [todos, setTodos] = useState([]);
 
   useEffect(() => {
-    fetch("https://sum-server.100xdevs.com/todos").then(async (res) => {
-      const json = await res.json();
-      setTodos(json.todos);
-    });
+    setInterval(() => {
+      fetch("https://sum-server.100xdevs.com/todos").then(async (res) => {
+        const json = await res.json();
+        setTodos(json.todos);
+      });
+    }, 5000);
   }, []);
 
   return (
