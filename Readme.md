@@ -5,3 +5,5 @@
 - key
 - Wrapper components
 - useEffect
+- useMemo
+- useCallback
