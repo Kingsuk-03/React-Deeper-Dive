@@ -13,3 +13,5 @@
 ##
 
 - React Routing
+- Prop Drilling
+- ContextAPI
